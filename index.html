@@ -12,431 +12,156 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink:    #1c1c18;
-  --paper:  #f4f0e8;
-  --green:  #2d5a3a;
-  --gold:   #9a7340;
-  --muted:  #6a6458;
-  --rule:   #d8d0c0;
+  --ink:   #1c1c18;
+  --paper: #f4f0e8;
+  --green: #2d5a3a;
+  --gold:  #9a7340;
+  --muted: #6a6458;
+  --rule:  #d8d0c0;
 }
 
 html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; font-weight: 300; background: var(--paper); color: var(--ink); line-height: 1.6; }
 
-body {
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.6;
-}
-
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 99;
-  background: var(--paper);
+  background: rgba(244,240,232,0.96); backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.1rem 4rem;
 }
-
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  color: var(--green);
-  text-decoration: none;
-  letter-spacing: .01em;
-}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--green); text-decoration: none; }
 .logo em { font-style: italic; color: var(--gold); }
-
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  font-size: .7rem;
-  font-weight: 400;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color .2s;
-}
+.nav-links a { font-size: .68rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
 .nav-links a:hover { color: var(--green); }
 
-/* ── HERO ── */
+/* HERO */
 .hero {
-  background: var(--green);
+  position: relative;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
   padding-top: 4rem;
 }
-
-.hero-left {
-  padding: 7rem 4rem 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.hero-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
 }
-
-.hero-kicker {
-  font-size: .65rem;
-  font-weight: 400;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.45);
-  margin-bottom: 2rem;
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,32,18,.92) 0%, rgba(20,32,18,.35) 55%, rgba(20,32,18,.1) 100%);
 }
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 4.5vw, 4rem);
-  font-weight: 400;
-  color: #fff;
-  line-height: 1.12;
-  margin-bottom: 2rem;
-}
+.hero-content { position: relative; z-index: 1; padding: 5rem 4rem; max-width: 680px; }
+.hero-kicker { font-size: .62rem; font-weight: 400; letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.42); margin-bottom: 1.75rem; display: block; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 4rem); font-weight: 400; color: #fff; line-height: 1.1; margin-bottom: 1.5rem; }
 .hero-title em { font-style: italic; color: #c8a060; }
-
-.hero-body {
-  font-size: .9rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.55);
-  max-width: 380px;
-  line-height: 1.85;
-  margin-bottom: 3rem;
-}
-
-.hero-cta {
-  display: inline-block;
-  font-size: .68rem;
-  font-weight: 400;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: #c8a060;
-  border: 1px solid #c8a060;
-  padding: .75rem 1.75rem;
-  text-decoration: none;
-  align-self: flex-start;
-  transition: background .2s, color .2s;
-}
+.hero-body { font-size: .88rem; color: rgba(255,255,255,.55); max-width: 400px; line-height: 1.85; margin-bottom: 2.5rem; }
+.hero-cta { display: inline-block; font-size: .66rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: #c8a060; border: 1px solid #c8a060; padding: .75rem 1.75rem; text-decoration: none; transition: all .2s; }
 .hero-cta:hover { background: #c8a060; color: var(--green); }
 
-.hero-right {
-  border-left: 1px solid rgba(255,255,255,.08);
-  padding: 7rem 4rem 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 3rem;
-}
+/* STRIP */
+.strip { background: var(--green); padding: .75rem 4rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.strip-item { font-size: .6rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.strip-dot { color: #c8a060; }
 
-.hero-stat { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; }
-.hero-stat-n {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.6rem;
-  font-weight: 400;
-  color: #c8a060;
-  line-height: 1;
-  margin-bottom: .35rem;
-}
-.hero-stat-l {
-  font-size: .65rem;
-  font-weight: 300;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.38);
-}
-
-/* ── SECTION BASE ── */
-section { padding: 6rem 4rem; }
-
-.label {
-  font-size: .62rem;
-  font-weight: 400;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.25rem;
-  display: block;
-}
-
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.9rem, 3vw, 2.8rem);
-  font-weight: 400;
-  color: var(--green);
-  line-height: 1.15;
-}
-
-/* ── OFFER ── */
-.offer { background: var(--paper); border-bottom: 1px solid var(--rule); }
-
-.offer-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 4rem;
-  align-items: end;
-}
-
-.offer-intro {
-  font-size: .9rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.85;
-  max-width: 380px;
-}
-
-.offer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.offer-card {
-  background: var(--paper);
-  padding: 2.5rem;
-  transition: background .2s;
-}
+/* OFFER */
+.offer { padding: 6rem 4rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+.offer-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: end; }
+.label { font-size: .6rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: block; }
+h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 400; color: var(--green); line-height: 1.15; }
+.offer-intro { font-size: .88rem; color: var(--muted); line-height: 1.85; max-width: 380px; }
+.offer-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.offer-card { background: var(--paper); padding: 2.5rem; transition: background .2s; }
 .offer-card:hover { background: #eeeae0; }
+.offer-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--rule); margin-bottom: 1.25rem; line-height: 1; }
+.offer-card h3 { font-family: 'Playfair Display', serif; font-size: 1.12rem; font-weight: 400; color: var(--ink); margin-bottom: .55rem; }
+.offer-card p { font-size: .8rem; color: var(--muted); line-height: 1.78; }
 
-.offer-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--rule);
-  margin-bottom: 1.25rem;
-  line-height: 1;
-}
-
-.offer-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: .6rem;
-}
-
-.offer-card p {
-  font-size: .82rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.78;
-}
-
-/* ── FIBRES ── */
-.fibres { background: #f0ece2; border-bottom: 1px solid var(--rule); }
-
-.fibres-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-top: 3.5rem;
-}
-
-.fibre-item { padding-top: 2rem; border-top: 1px solid var(--rule); }
-
-.fibre-tag {
-  font-size: .6rem;
-  font-weight: 400;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--green);
-  padding: .25rem .65rem;
-  display: inline-block;
-  margin-bottom: 1.25rem;
-}
-
-.fibre-item.alt .fibre-tag { background: var(--gold); }
-
-.fibre-item h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: .75rem;
-}
-
-.fibre-item p {
-  font-size: .85rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.82;
-  margin-bottom: 1.25rem;
-}
-
+/* FIBRES — image left/right split */
+.fibre-row { display: grid; grid-template-columns: 1fr 1fr; }
+.fibre-img-wrap { position: relative; min-height: 480px; overflow: hidden; }
+.fibre-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fibre-body { padding: 4rem; display: flex; flex-direction: column; justify-content: center; }
+.fibre-row.light .fibre-body { background: #f0ece2; }
+.fibre-row.dark .fibre-body { background: var(--green); }
+.fibre-tag { font-size: .58rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: #fff; background: var(--green); padding: .22rem .6rem; display: inline-block; margin-bottom: 1.25rem; }
+.fibre-row.dark .fibre-tag { background: #c8a060; color: var(--green); }
+.fibre-body h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--ink); margin-bottom: .75rem; }
+.fibre-row.dark .fibre-body h3 { color: #fff; }
+.fibre-body p { font-size: .84rem; color: var(--muted); line-height: 1.82; margin-bottom: 1.4rem; }
+.fibre-row.dark .fibre-body p { color: rgba(255,255,255,.5); }
 .spec-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
-.spec-list li {
-  font-size: .78rem;
-  font-weight: 300;
-  color: var(--muted);
-  display: flex; gap: .5rem; align-items: baseline;
-}
+.spec-list li { font-size: .76rem; color: var(--muted); display: flex; gap: .5rem; align-items: baseline; }
+.fibre-row.dark .spec-list li { color: rgba(255,255,255,.45); }
 .spec-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
 
-/* ── BUYERS ── */
-.buyers { background: var(--green); }
-.buyers .label { color: rgba(255,255,255,.4); }
+/* PRODUCERS — full width image with text overlay */
+.producers { position: relative; min-height: 540px; display: flex; align-items: center; overflow: hidden; }
+.producers-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.producers-overlay { position: absolute; inset: 0; background: rgba(20,32,18,.72); }
+.producers-content { position: relative; z-index: 1; padding: 5rem 4rem; max-width: 620px; }
+.producers-content .label { color: rgba(255,255,255,.38); }
+.producers-content h2 { color: #fff; margin-bottom: 1.25rem; }
+.producers-content p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.85; margin-bottom: 2rem; max-width: 480px; }
+.producers-stats { display: flex; gap: 3rem; }
+.pstat-n { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #c8a060; line-height: 1; margin-bottom: .3rem; }
+.pstat-l { font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.38); }
+
+/* BUYERS */
+.buyers { padding: 6rem 4rem; background: var(--green); }
+.buyers .label { color: rgba(255,255,255,.38); }
 .buyers h2 { color: #fff; margin-bottom: 3rem; }
+.buyers-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); margin-bottom: 3rem; }
+.buyer-cell { background: var(--green); padding: 2rem 1.75rem; }
+.buyer-cell h4 { font-size: .68rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: #c8a060; margin-bottom: .5rem; }
+.buyer-cell p { font-size: .78rem; color: rgba(255,255,255,.42); line-height: 1.72; }
+.fairs { font-size: .82rem; color: rgba(255,255,255,.42); border-top: 1px solid rgba(255,255,255,.1); padding-top: 2rem; line-height: 1.8; }
+.fairs strong { font-weight: 400; color: rgba(255,255,255,.72); }
 
-.buyers-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.1);
-  margin-bottom: 3rem;
-}
-
-.buyer-cell {
-  background: var(--green);
-  padding: 2rem 1.75rem;
-}
-
-.buyer-cell h4 {
-  font-size: .7rem;
-  font-weight: 400;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #c8a060;
-  margin-bottom: .5rem;
-}
-
-.buyer-cell p {
-  font-size: .8rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.45);
-  line-height: 1.7;
-}
-
-.fairs-note {
-  font-size: .82rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.45);
-  border-top: 1px solid rgba(255,255,255,.1);
-  padding-top: 2rem;
-  line-height: 1.8;
-}
-.fairs-note strong { font-weight: 400; color: rgba(255,255,255,.75); }
-
-/* ── CONTACT ── */
-.contact { background: var(--ink); }
-.contact .label { color: rgba(255,255,255,.3); }
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  margin-top: 3rem;
-}
-
+/* CONTACT */
+.contact { padding: 6rem 4rem; background: var(--ink); }
+.contact .label { color: rgba(255,255,255,.28); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 3rem; }
 .contact h2 { color: #fff; margin-bottom: 1.5rem; }
-
-.contact-body {
-  font-size: .88rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.45);
-  line-height: 1.85;
-  margin-bottom: 2.5rem;
-}
-
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  font-size: .82rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.5);
-  text-decoration: none;
-  margin-bottom: .9rem;
-  transition: color .2s;
-}
-.contact-link:hover { color: #c8a060; }
-
-.contact-link svg {
-  width: 14px; height: 14px;
-  fill: none; stroke: #9a7340;
-  stroke-width: 1.5; flex-shrink: 0;
-}
-
+.contact-body { font-size: .86rem; color: rgba(255,255,255,.42); line-height: 1.85; margin-bottom: 2.5rem; }
+.clink { display: flex; align-items: center; gap: .75rem; font-size: .8rem; color: rgba(255,255,255,.48); text-decoration: none; margin-bottom: .9rem; transition: color .2s; }
+.clink:hover { color: #c8a060; }
+.clink svg { width: 14px; height: 14px; fill: none; stroke: #9a7340; stroke-width: 1.5; flex-shrink: 0; }
 .contact-right { padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08); }
-
-.contact-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: #fff;
-  margin-bottom: .2rem;
-}
-
-.contact-role {
-  font-size: .62rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: #9a7340;
-  margin-bottom: 2rem;
-}
-
-.sister {
-  font-size: .75rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.28);
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255,.07);
-}
-.sister a {
-  color: rgba(255,255,255,.45);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,.15);
-}
+.contact-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: .2rem; }
+.contact-role { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: #9a7340; margin-bottom: 2rem; }
+.sister { font-size: .72rem; color: rgba(255,255,255,.28); margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.07); }
+.sister a { color: rgba(255,255,255,.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.15); }
 .sister a:hover { color: #c8a060; }
 
-/* ── FOOTER ── */
-footer {
-  background: #141410;
-  padding: 1.5rem 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid rgba(255,255,255,.05);
-}
-
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: .9rem;
-  color: rgba(255,255,255,.3);
-  text-decoration: none;
-}
+/* FOOTER */
+footer { background: #141410; padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.05); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: .9rem; color: rgba(255,255,255,.3); text-decoration: none; }
 .footer-logo em { font-style: italic; color: rgba(155,115,64,.5); }
+.footer-copy { font-size: .62rem; color: rgba(255,255,255,.18); letter-spacing: .06em; }
 
-.footer-copy {
-  font-size: .65rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.18);
-  letter-spacing: .06em;
-}
-
-/* ── FADE IN ── */
-.fi {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .65s ease, transform .65s ease;
-}
+/* FADE IN */
+.fi { opacity: 0; transform: translateY(14px); transition: opacity .65s ease, transform .65s ease; }
 .fi.on { opacity: 1; transform: none; }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
-  section { padding: 4rem 1.5rem; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-left, .hero-right { padding: 3rem 1.5rem; }
-  .hero-right { border-left: none; border-top: 1px solid rgba(255,255,255,.08); flex-direction: row; flex-wrap: wrap; gap: 2rem; }
-  .offer-head, .fibres-grid, .contact-grid { grid-template-columns: 1fr; }
+  .offer, .buyers, .contact { padding: 4rem 1.5rem; }
+  .offer-head, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
   .offer-grid, .buyers-grid { grid-template-columns: 1fr; }
-  footer { flex-direction: column; gap: .5rem; text-align: center; }
+  .fibre-row { grid-template-columns: 1fr; }
+  .fibre-img-wrap { min-height: 260px; }
+  .fibre-body { padding: 2.5rem 1.5rem; }
+  .producers-content { padding: 3rem 1.5rem; }
+  .producers-stats { gap: 2rem; flex-wrap: wrap; }
+  .strip { padding: .75rem 1.5rem; }
+  .hero-content { padding: 3rem 1.5rem; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; padding: 1.5rem; }
 }
 </style>
 </head>
@@ -447,39 +172,32 @@ footer {
   <a href="#" class="logo">Nilarein<em>6</em> Global Ventures</a>
   <ul class="nav-links">
     <li><a href="#fibres">Fibres</a></li>
-    <li><a href="#buyers">Buyers</a></li>
+    <li><a href="#producers">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding:0">
-  <div class="hero-left">
-    <p class="hero-kicker">Tirupur · Tamil Nadu · India</p>
-    <h1 class="hero-title">
-      Sustainable fibre,<br>
-      <em>ethically sourced</em>
-    </h1>
-    <p class="hero-body">
-      Banana fibre and organic cotton from women-led SHG production units in Theni — with full traceability for EU buyers.
-    </p>
+<section class="hero">
+  <img class="hero-img" src="images/hero.jpg" alt="Banana plantation at dusk, Theni Tamil Nadu">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-kicker">Tirupur · Tamil Nadu · India</span>
+    <h1 class="hero-title">Sustainable fibre,<br><em>ethically sourced</em></h1>
+    <p class="hero-body">Banana fibre and organic cotton from women-led SHG units in Theni — with full traceability for EU buyers.</p>
     <a href="#contact" class="hero-cta">Request samples</a>
   </div>
-  <div class="hero-right">
-    <div class="hero-stat">
-      <div class="hero-stat-n">100%</div>
-      <div class="hero-stat-l">Women-led SHG units</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-n">Theni</div>
-      <div class="hero-stat-l">Origin district, Tamil Nadu</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-n">CSRD</div>
-      <div class="hero-stat-l">Documentation supplied</div>
-    </div>
-  </div>
 </section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span class="strip-item">Banana Fibre</span><span class="strip-dot">·</span>
+  <span class="strip-item">Organic Cotton</span><span class="strip-dot">·</span>
+  <span class="strip-item">Women-Led SHG</span><span class="strip-dot">·</span>
+  <span class="strip-item">CSRD-Ready</span><span class="strip-dot">·</span>
+  <span class="strip-item">Theni, Tamil Nadu</span><span class="strip-dot">·</span>
+  <span class="strip-item">EU Export</span>
+</div>
 
 <!-- OFFER -->
 <section class="offer">
@@ -494,17 +212,17 @@ footer {
     <div class="offer-card">
       <div class="offer-num">01</div>
       <h3>Banana fibre trading</h3>
-      <p>Raw and semi-processed banana fibre from women-led SHG units in Theni district. Ideal for sustainable textiles and packaging.</p>
+      <p>Raw and semi-processed banana fibre from women-led SHG units in Theni. Ideal for sustainable textiles and packaging.</p>
     </div>
     <div class="offer-card">
       <div class="offer-num">02</div>
       <h3>Organic cotton</h3>
-      <p>GOTS and OEKO-TEX certified organic cotton from Tamil Nadu. Full certification chain for EU import compliance.</p>
+      <p>GOTS and OEKO-TEX certified organic cotton from Tamil Nadu with full certification chain for EU import.</p>
     </div>
     <div class="offer-card">
       <div class="offer-num">03</div>
       <h3>CSRD documentation</h3>
-      <p>Producer profiles, traceability maps, and sourcing declarations to support your EU due diligence reporting.</p>
+      <p>Producer profiles, traceability maps, and sourcing declarations for your EU due diligence reporting.</p>
     </div>
     <div class="offer-card">
       <div class="offer-num">04</div>
@@ -514,32 +232,64 @@ footer {
   </div>
 </section>
 
-<!-- FIBRES -->
-<section class="fibres" id="fibres">
-  <span class="label fi">Our fibres</span>
-  <h2 class="fi">Two fibres.<br>One commitment.</h2>
-  <div class="fibres-grid">
-    <div class="fibre-item fi">
-      <span class="fibre-tag">Primary</span>
-      <h3>Banana fibre</h3>
-      <p>Extracted from the banana pseudostem — a harvest byproduct. Natural, biodegradable, and increasingly demanded by EU sustainable brands.</p>
-      <ul class="spec-list">
-        <li>Raw and semi-processed grades</li>
-        <li>Origin: Theni district, Tamil Nadu</li>
-        <li>Women-led SHG production</li>
-        <li>Fair Trade documentation supplied</li>
-      </ul>
-    </div>
-    <div class="fibre-item alt fi">
-      <span class="fibre-tag">Complementary</span>
-      <h3>Organic cotton</h3>
-      <p>Certified and traceable. Suitable for baby apparel, home textiles, and sustainable fashion — grown and processed in Tamil Nadu.</p>
-      <ul class="spec-list">
-        <li>GOTS and OEKO-TEX certified</li>
-        <li>180 GSM for baby apparel</li>
-        <li>Origin: Tamil Nadu, India</li>
-        <li>Full certification documents</li>
-      </ul>
+<!-- FIBRE ROW 1 — banana, image left -->
+<div class="fibre-row light" id="fibres">
+  <div class="fibre-img-wrap">
+    <img src="images/banana-fibre.jpg" alt="Banana fibre strands extracted from pseudostem">
+  </div>
+  <div class="fibre-body fi">
+    <span class="fibre-tag">Primary offering</span>
+    <h3>Banana fibre</h3>
+    <p>Extracted from the banana pseudostem — a harvest byproduct. Natural, biodegradable, and increasingly demanded by EU sustainable brands.</p>
+    <ul class="spec-list">
+      <li>Raw and semi-processed grades</li>
+      <li>Origin: Theni district, Tamil Nadu</li>
+      <li>Women-led SHG production</li>
+      <li>Fair Trade documentation supplied</li>
+      <li>Flexible MOQ for trial orders</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FIBRE ROW 2 — cotton, image right -->
+<div class="fibre-row dark">
+  <div class="fibre-body fi">
+    <span class="fibre-tag">Complementary offering</span>
+    <h3>Organic cotton</h3>
+    <p>Certified and traceable. Suitable for baby apparel, home textiles, and sustainable fashion — grown and processed in Tamil Nadu.</p>
+    <ul class="spec-list">
+      <li>GOTS and OEKO-TEX certified</li>
+      <li>180 GSM for baby apparel</li>
+      <li>Origin: Tamil Nadu, India</li>
+      <li>Full certification documents</li>
+    </ul>
+  </div>
+  <div class="fibre-img-wrap">
+    <img src="images/cotton-field.jpg" alt="Organic cotton field in Tamil Nadu">
+  </div>
+</div>
+
+<!-- PRODUCERS — full bleed -->
+<section class="producers" id="producers">
+  <img class="producers-img" src="images/women-producers.jpg" alt="Women SHG producers working with banana fibre in Theni">
+  <div class="producers-overlay"></div>
+  <div class="producers-content fi">
+    <span class="label">Our producers</span>
+    <h2>Women at the<br>centre of sourcing</h2>
+    <p>Every unit we source from is run by women's Self-Help Groups in Theni district. We document their ownership, production capacity, and social impact — so your sourcing has a face and a story.</p>
+    <div class="producers-stats">
+      <div>
+        <div class="pstat-n">100%</div>
+        <div class="pstat-l">Women-led units</div>
+      </div>
+      <div>
+        <div class="pstat-n">Theni</div>
+        <div class="pstat-l">Origin district</div>
+      </div>
+      <div>
+        <div class="pstat-n">CSRD</div>
+        <div class="pstat-l">Documentation ready</div>
+      </div>
     </div>
   </div>
 </section>
@@ -559,13 +309,10 @@ footer {
     </div>
     <div class="buyer-cell">
       <h4>Sustainable fashion</h4>
-      <p>Designers and houses seeking natural fibres with a genuine, documentable origin story.</p>
+      <p>Designers seeking natural fibres with a genuine, documentable origin story.</p>
     </div>
   </div>
-  <p class="fairs-note fi">
-    Presenting at <strong>INNATEX</strong> — Hofheim am Taunus, July 2026 &nbsp;·&nbsp; <strong>Texworld Paris Avantex</strong> — August / September 2026.<br>
-    Contact us to arrange a meeting at either fair.
-  </p>
+  <p class="fairs fi">Presenting at <strong>INNATEX</strong> — Hofheim am Taunus, July 2026 &nbsp;·&nbsp; <strong>Texworld Paris Avantex</strong> — August / September 2026. Contact us to arrange a meeting.</p>
 </section>
 
 <!-- CONTACT -->
@@ -574,12 +321,12 @@ footer {
   <div class="contact-grid">
     <div class="fi">
       <h2>Let's talk<br>sourcing.</h2>
-      <p class="contact-body">Send us your fibre requirements, request a sample, or book a meeting at INNATEX or Texworld. We respond within 48 hours.</p>
-      <a href="mailto:sourcing@nilarein6.com" class="contact-link">
+      <p class="contact-body">Send your fibre requirements, request a sample, or book a meeting at INNATEX or Texworld. We respond within 48 hours.</p>
+      <a href="mailto:sourcing@nilarein6.com" class="clink">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         sourcing@nilarein6.com
       </a>
-      <a href="https://linkedin.com/company/nilarein6-global-ventures" target="_blank" rel="noopener" class="contact-link">
+      <a href="https://linkedin.com/company/nilarein6-global-ventures" target="_blank" rel="noopener" class="clink">
         <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         Nilarein6 Global Ventures
       </a>
@@ -587,8 +334,8 @@ footer {
     <div class="contact-right fi">
       <p class="contact-name">Keerthi</p>
       <p class="contact-role">Founder · Nilarein6 Global Ventures · Tirupur</p>
-      <p class="contact-body" style="margin-bottom:0">Based in Tirupur, Tamil Nadu — India's textile heartland. Sourcing directly from women's Self-Help Groups in Theni district since founding.</p>
-      <p class="sister">EU sister brand: <a href="https://nilarein6.de" target="_blank" rel="noopener">nilarein6.de</a> — organic baby clothing for the German market</p>
+      <p class="contact-body" style="margin-bottom:0">Based in Tirupur, Tamil Nadu — India's textile heartland. Sourcing directly from women's Self-Help Groups in Theni district.</p>
+      <p class="sister">EU sister brand: <a href="https://nilarein6.de" target="_blank" rel="noopener">nilarein6.de</a> — organic baby clothing, Germany</p>
     </div>
   </div>
 </section>
